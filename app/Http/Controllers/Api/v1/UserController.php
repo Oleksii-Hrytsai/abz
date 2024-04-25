@@ -55,8 +55,7 @@ class UserController extends Controller
             $userData = $this->userDataService->prepareUserData($request, $accessToken, $imagePath);
 
             $client = new Client();
-            $response = $client->request('POST', config('api.user_creation_url'), $userData);
-            $result = json_decode($response->getBody(), true);
+            $client->request('POST', config('api.user_creation_url'), $userData);
 
             return Redirect::to('/')->with('success', 'User created successfully!');
         } catch (\Throwable $e) {
